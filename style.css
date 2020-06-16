@@ -5,9 +5,11 @@
 .grid {
   width: 200px;
   height: 400px;
-  background-color: yellow;
+  background-color: rgb(102, 173, 206);
   display: flex;
   flex-wrap: wrap;
+  /* do I want the grid to be visible? */
+  /* border: 1px solid */
 }
 
 .grid div {
@@ -17,6 +19,8 @@
 
 .tetromino {
   background-color: blue;
+  /* need to figure out a way to apply more styling on top of base colors for 3D effect */
+  /* NOTE could make 2px highlights and shadows on ALL places where bg color is applied */
 }
 
 .mini-grid {
@@ -24,7 +28,7 @@
   height: 80px;
   display: flex;
   flex-wrap: wrap;
-  background-color: yellow;
+  background-color: rgb(102, 173, 206);
   margin-left: 50px;
 }
 

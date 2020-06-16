@@ -85,9 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  //make the tetromino move down every second
-  // timerId = setInterval(moveDown, 1000)
-
   //assign functions to keyCodeds
   function control(e) {
     if (e.keyCode === 37) {
