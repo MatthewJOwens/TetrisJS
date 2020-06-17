@@ -1,3 +1,5 @@
+//found better way at https://www.codeexplained.org/2018/08/create-tetris-game-using-javascript.html
+
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid');
   let squares = Array.from(document.querySelectorAll('.grid div'))
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     [1, width + 1, width * 2 + 1, width * 2],
     [width, width * 2, width * 2 + 1, width * 2 + 2]
   ]
-  const rTetromino = [
+  const jTetromino = [
     [0, 1, width + 1, width * 2 + 1],
     [2, width, width + 1, width + 2],
     [1, width + 1, width * 2 + 1, width * 2 + 2],
@@ -36,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     [0, width, width + 1, width * 2 + 1],
     [width + 1, width + 2, width * 2, width * 2 + 1],
   ];
-  const rzTetromino = [
+  const sTetromino = [
     [1, width, width + 1, width * 2],
     [0, 1, width + 1, width + 2],
     [1, width, width + 1, width * 2],
@@ -57,10 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const iTetromino = [
     [1, width + 1, width * 2 + 1, width * 3 + 1],
     [width, width + 1, width + 2, width + 3],
-    [1, width + 1, width * 2 + 1, width * 3 + 1],
-    [width, width + 1, width + 2, width + 3]
+    [2, width + 2, width * 2 + 2, width * 3 + 2],
+    [width * 2, width * 2 + 1, width * 2 + 2, width * 2 + 3]
   ]
-  const theTetrominoes = [lTetromino, rTetromino, zTetromino, rzTetromino, tTetromino, oTetromino, iTetromino]
+  const theTetrominoes = [lTetromino, jTetromino, zTetromino, sTetromino, tTetromino, oTetromino, iTetromino]
   let currentPosition = 4
   let currentRotation = 0
   //randomly select a tetromino and its first rotation
@@ -150,10 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //rotate the tetromino
   function rotate() {
     undraw()
-    currentRotation++
-    if (currentRotation === current.length) { //if the current rotation gets to 4, make it go back to 0
-      currentRotation = 0
-    }
+    currentRotation = (currentRotation + 1) % current.length
     current = theTetrominoes[random][currentRotation]
     //if at an edge, move away one square if it crosses
     if (current.some(index => (currentPosition + index) % width === width - 1))
@@ -168,9 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //the Tetrominos w/o rotations
   const upNextTetrominoes = [
     [1, displayWidth + 1, displayWidth * 2 + 1, 2], //lTetromino
-    [0, 1, displayWidth + 1, displayWidth * 2 + 1], //rTetromino
+    [0, 1, displayWidth + 1, displayWidth * 2 + 1], //jTetromino
     [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //zTetromino
-    [1, displayWidth, displayWidth + 1, displayWidth * 2], //rzTetromino
+    [1, displayWidth, displayWidth + 1, displayWidth * 2], //sTetromino
     [displayWidth, displayWidth + 1, displayWidth + 2, displayWidth * 2 + 1], //tTetromino
     [displayWidth + 1, displayWidth + 2, displayWidth * 2 + 1, displayWidth * 2 + 2], //oTetromino
     [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], //iTetromino
